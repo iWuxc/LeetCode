@@ -31,6 +31,9 @@
  * 1 <= m + n <= 200
  * -109 <= nums1[i], nums2[j] <= 109
  * 进阶：你可以设计实现一个时间复杂度为 O(m + n) 的算法解决此问题吗？
+ *
+ *
+ * 解题思路： 从后边开始确定， 每次循环， 对比两个数组最后的一个数， 然后进行排序
  */
 
 class Solution {
@@ -43,6 +46,23 @@ class Solution {
      * @return NULL
      */
     function merge(&$nums1, $m, $nums2, $n) {
+
+        $i = $m - 1;
+        $j = $n - 1;
+        $k = $n + $m - 1;
+
+        while ($i >= 0 && $j >= 0 && $k >= 0) {
+
+            if($nums1[$i] > $nums2[$j]) {
+                $nums1[$k--] = $nums1[$i--];
+            } else {
+                $nums1[$k--] = $nums2[$j--];
+            }
+        }
+
+        while($j >= 0) {
+            $nums1[$k--] = $nums2[$j--];
+        }
 
     }
 }
