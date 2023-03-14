@@ -14,13 +14,11 @@
  * 系统会用下面的代码来测试你的题解:
  *
  *      int[] nums = [...]; // 输入数组
-        int[] expectedNums = [...]; // 长度正确的期望答案
-
-        int k = removeDuplicates(nums); // 调用
-
-        assert k == expectedNums.length;
-        for (int i = 0; i < k; i++) {
-        assert nums[i] == expectedNums[i];
+ *      int[] expectedNums = [...]; // 长度正确的期望答案
+ *      int k = removeDuplicates(nums); // 调用
+ *      assert k == expectedNums.length;
+ *      for (int i = 0; i < k; i++) {
+ *          assert nums[i] == expectedNums[i];
         }
  *
  * 如果所有断言都通过，那么您的题解将被 通过。
