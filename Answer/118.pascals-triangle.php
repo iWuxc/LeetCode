@@ -27,6 +27,22 @@ class Solution {
      * @return Integer[][]
      */
     function generate($numRows) {
-
+        $res = [];
+        for($i = 0; $i < $numRows; $i++) {
+            if($i == 0) {
+                $res[$i] = [1];
+            } else {
+                $res[$i][] = 1;
+                for ($j = 1; $j < $i; $j++) {
+                    $res[$i][] = $res[$i - 1][$j] + $res[$i - 1][$j - 1];
+                }
+                $res[$i][] = 1;
+            }
+        }
+        return $res;
     }
 }
+
+$obj = new Solution();
+$res = $obj->generate(6);
+print_r($res);
