@@ -26,4 +26,47 @@
  * 提示
  * 1 <= s.length <= 2 * 105
  * 仅由可打印的 ASCII 字符组成
+ *
+ * 解题思路： 关键函数 ctype_alnum()
  */
+
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Boolean
+     */
+    function isPalindrome_s1($s) {
+
+        $len = strlen($s);
+        $left = 0;
+        $right = $len - 1;
+
+        while ($left < $right) {
+
+            while ($left < $right && !ctype_alnum($s[$left])) { $left++; }
+            while ($left < $right && !ctype_alnum($s[$right])) { $right--; }
+
+            if(strtolower($s[$left]) != strtolower($s[$right]))
+                return false;
+
+            $left++;
+            $right--;
+
+        }
+
+        return true;
+    }
+
+    function isPalindrome_s2($s) {
+
+        $regexp = "/[^a-zA-Z0-9]+/";
+        $s = preg_replace($regexp, "", $s);
+        return strcasecmp($s, strrev($s)) == 0;
+    }
+}
+
+$s = "A man, a plan, a canal: Panama";
+$obj = new Solution();
+$resp = $obj->isPalindrome_s2($s);
+var_dump($resp);
